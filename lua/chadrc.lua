@@ -1,17 +1,122 @@
--- This file needs to have same structure as nvconfig.lua 
--- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
--- Please read that file to know all available options :( 
+-- Основные настройки интерфейса и функций
+local options = {
+	-- Настройки основной темы и интерфейса base46
+	base46 = {
+		theme = "chocolate", -- Устанавливает тему из переменной окружения или по умолчанию "tokyonight"
+		theme_toggle = { "chocolate", "catpuccin" }, -- Переключение между темами "onedark" и "one_light"
+		transparency = true, -- Отключает прозрачность
+		hl_add = {}, -- Дополнительные настройки подсветки
+		hl_override = {}, -- Переопределение стандартных настроек подсветки
+		integrations = {}, -- Интеграции с другими плагинами или модулями
+		changed_themes = {}, -- Хранит измененные темы для удобного переключения
+	},
 
----@type ChadrcConfig
-local M = {}
+	-- Настройки пользовательского интерфейса
+	ui = {
+		cmp = { -- Настройки для автодополнения (Completion)
+			icons_left = false, -- Отключает иконки слева от текста
+			lspkind_text = true, -- Включает отображение текста для типов LSP
+			style = "default", -- Устанавливает стандартный стиль отображения
+			format_colors = { tailwind = false, icon = "󱓻" }, -- Настройка цвета иконок
+		},
+		telescope = { style = "borderless" }, -- Отключает рамку для Telescope
+		statusline = { -- Настройки строки состояния
+			enabled = true, -- Включает строку состояния
+			theme = "default", -- Устанавливает тему для строки состояния
+			separator_style = "default", -- Определяет стиль разделителя
+		},
+		tabufline = { -- Настройки линии вкладок
+			enabled = true, -- Включает панель вкладок
+			lazyload = true, -- Ленивая загрузка для оптимизации
+			order = { "treeOffset", "buffers", "tabs", "btns" }, -- Устанавливает порядок элементов
+		},
+	},
 
-M.base46 = {
-	theme = "onedark",
+	-- Настройки nvdash, который отображается при запуске Neovim
+	nvdash = {
+		load_on_startup = true, -- Загружает nvdash при старте Neovim
+		header = { -- Текст заголовка в виде ASCII-графики
+			" █████   █    ██  ▄▄▄        ██████  ▄▄▄       ██▀███  ",
+			"▒██▓  ██▒ ██  ▓██▒▒████▄    ▒██    ▒ ▒████▄    ▓██ ▒ ██▒",
+			"▒██▒  ██░▓██  ▒██░▒██  ▀█▄  ░ ▓██▄   ▒██  ▀█▄  ▓██ ░▄█ ▒",
+			"░██  █▀ ░▓▓█  ░██░░██▄▄▄▄██   ▒   ██▒░██▄▄▄▄██ ▒██▀▀█▄  ",
+			"░▒███▒█▄ ▒▒█████▓  ▓█   ▓██▒▒██████▒▒ ▓█   ▓██▒░██▓ ▒██▒",
+			"░░ ▒▒░ ▒ ░▒▓▒ ▒ ▒  ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░ ▒▒   ▓▒█░░ ▒▓ ░▒▓░",
+			" ░ ▒░  ░ ░░▒░ ░ ░   ▒   ▒▒ ░░ ░▒  ░ ░  ▒   ▒▒ ░  ░▒ ░ ▒░",
+			"   ░   ░  ░░░ ░ ░   ░   ▒   ░  ░  ░    ░   ▒     ░░   ░ ",
+			"    ░       ░           ░  ░      ░        ░  ░   ░     ",
+			" ",
+			" ",
+			" ",
+			" ",
+			" ",
+		},
+		buttons = { -- Кнопки для быстрого доступа к командам
+			{ txt = "  Найти Файлы", keys = "ff", cmd = "Telescope find_files" },
+			{ txt = "  Недавние Файлы", keys = "fo", cmd = "Telescope oldfiles" },
+			{ txt = "󰈭  Найти Слово", keys = "fw", cmd = "Telescope live_grep" },
+			{ txt = "󱥚  Темы", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
+			{ txt = "  Сессии", keys = "ss", cmd = "SessionManager load_session" },
+			{ txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },
+			{ txt = "─", hl = "NvDashFooter", no_gap = true, rep = true }, -- Разделитель
+			{
+				txt = function()
+					local stats = require("lazy").stats()
+					local ms = math.floor(stats.startuptime) .. " ms"
+					return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+				end,
+				hl = "NvDashFooter",
+				no_gap = true,
+			},
+			{ txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
+		},
+	},
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+	-- Настройки терминала
+	term = {
+		winopts = { number = false, relativenumber = false }, -- Отключает номера строк для терминала
+		sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 }, -- Размеры для разделений экрана
+		float = { -- Плавающее окно для терминала
+			relative = "editor",
+			row = 0.3,
+			col = 0.25,
+			width = 0.5,
+			height = 0.4,
+			border = "single", -- Одинарная рамка
+		},
+	},
+
+	-- Настройки LSP
+	lsp = { signature = true }, -- Включает отображение сигнатуры функции при работе с LSP
+
+	-- Настройки для cheatsheet (шпаргалки)
+	cheatsheet = {
+		theme = "grid", -- Устанавливает сеточную тему
+		-- excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" },  -- Группы, исключаемые из списка
+	},
+
+	-- Настройки для Mason (пакетного менеджера)
+	mason = {
+		pkgs = {
+			"basedpyright",
+			"yapf",
+			"black",
+			"mypy",
+			"ruff",
+			"prettier",
+		},
+		skip = {},
+	}, -- Определяет пакеты для установки и пропуска
+
+	-- Настройки для colorify (подсветки цветов)
+	colorify = {
+		enabled = true, -- Включает подсветку цветов
+		mode = "virtual", -- Виртуальный режим подсветки
+		virt_text = "󱓻 ", -- Текст и иконка для подсветки
+		highlight = { hex = true, lspvars = true }, -- Включает подсветку hex-значений и переменных LSP
+	},
 }
 
-return M
+-- Безопасная попытка загрузки файла "chadrc.lua" для расширения настроек
+local status, chadrc = pcall(require, "chadrc")
+return vim.tbl_deep_extend("force", options, status and chadrc or {})
