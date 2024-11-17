@@ -15,6 +15,13 @@ return {
     },
 
     {
+        -- GIT интеграция
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("configs.gitsigns").setup()
+        end,
+    },
+    {
         -- Линтинг
         "mfussenegger/nvim-lint",
         event = {
@@ -44,7 +51,25 @@ return {
     --         require("lsp_signature").setup(require "configs.conform")
     --     end,
     -- },
-
+    {
+        "nvim-java/nvim-java",
+        lazy = true,
+        dependencies = {
+            {
+                "williamboman/mason.nvim",
+                opts = {
+                    registries = {
+                        "github:nvim-java/mason-registry",
+                        "github:mason-org/mason-registry",
+                    },
+                },
+            },
+        },
+        config = function()
+            require("java").setup {}
+            require("lspconfig").jdtls.setup {}
+        end,
+    },
     {
         "neovim/nvim-lspconfig",
         event = { "BufNewFile", "BufReadPre" },

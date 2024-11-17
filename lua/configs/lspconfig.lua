@@ -31,5 +31,6 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Настройка ruff и basedpyright
+
 basedpyright()
 ruff()

@@ -14,6 +14,8 @@ function M.setup()
 		autosave_ignore_buftypes = { "nofile", "prompt" }, -- Игнорируемые типы буферов
 	}
 
+
+
 	vim.api.nvim_create_autocmd({ "User" }, {
 		pattern = "SessionLoadPost", -- Выполняется после загрузки сессии
 		group = config_group,
