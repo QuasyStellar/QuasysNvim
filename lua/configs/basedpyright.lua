@@ -3,16 +3,16 @@ return {
 		disableOrganizeImports = true,
 		disableTaggedHints = false,
 		analysis = {
-			typeCheckingMode = "standard",
+			typeCheckingMode = "off",
 			useLibraryCodeForTypes = true, -- Analyze library code for type information
 			autoImportCompletions = true,
 			autoSearchPaths = true,
 			diagnosticSeverityOverrides = {
 				reportIgnoreCommentWithoutRule = true,
 			},
-            inlayHints = {
-                variableTypes = true,
-            },
+			inlayHints = {
+				variableTypes = true,
+			},
 		},
 	},
 }

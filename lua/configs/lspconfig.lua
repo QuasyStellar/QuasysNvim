@@ -8,6 +8,13 @@ local function ruff()
 			client.server_capabilities.hoverProvider = false
 			nvlsp.on_attach(client, bufnr) -- Используем on_attach из nvchad
 		end,
+		init_options = {
+			settings = {
+				lint = {
+					enable = false, -- Отключаем lint (Используем lint.nvim)
+				},
+			},
+		},
 	}
 end
 
@@ -31,6 +38,5 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Настройка ruff и basedpyright
-
 basedpyright()
 ruff()
