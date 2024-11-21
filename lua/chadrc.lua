@@ -52,11 +52,11 @@ local options = {
 			" ",
 		},
 		buttons = { -- Кнопки для быстрого доступа к командам
-			{ txt = "  Найти Файлы", keys = "ff", cmd = "Telescope find_files" },
-			{ txt = "  Недавние Файлы", keys = "fo", cmd = "Telescope oldfiles" },
-			{ txt = "󰈭  Найти Слово", keys = "fw", cmd = "Telescope live_grep" },
-			{ txt = "󱥚  Темы", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
-			{ txt = "  Сессии", keys = "ss", cmd = "SessionManager load_session" },
+			{ txt = "  Find Files", keys = "ff", cmd = "Telescope find_files" },
+			{ txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },
+			{ txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
+			{ txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
+			{ txt = "  Sessions", keys = "ss", cmd = "SessionManager load_session" },
 			{ txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },
 			{ txt = "─", hl = "NvDashFooter", no_gap = true, rep = true }, -- Разделитель
 			{

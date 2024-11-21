@@ -4,6 +4,7 @@ local opts = {
 		"lua",
 		"cpp",
 		"c",
+		"gitcommit",
 		"vimdoc",
 		"html",
 		"css",

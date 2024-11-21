@@ -2,6 +2,12 @@ local lspconfig = require "lspconfig"
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- Функции для ruff и basedpyright
+lspconfig.basedpyright.setup {
+	on_attach = nvlsp.on_attach,
+	capabilities = nvlsp.capabilities,
+	settings = require "configs.basedpyright",
+}
+
 lspconfig.ruff.setup {
 	on_attach = function(client, bufnr)
 		client.server_capabilities.hoverProvider = false
@@ -14,12 +20,6 @@ lspconfig.ruff.setup {
 			},
 		},
 	},
-}
-
-lspconfig.basedpyright.setup {
-	on_attach = nvlsp.on_attach,
-	capabilities = nvlsp.capabilities,
-	settings = require "configs.basedpyright",
 }
 
 lspconfig.clangd.setup {
