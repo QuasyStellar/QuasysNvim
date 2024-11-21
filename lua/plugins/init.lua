@@ -105,6 +105,23 @@ return {
 
 	{ "nvim-neotest/nvim-nio" }, -- Зависимость?
 	-- Украшательства
+	-- lazy.nvim
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy", -- Плагин будет загружен только при необходимости
+		opts = {
+			-- Здесь можно добавить дополнительные настройки, если нужно
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim", -- Обязательная зависимость для noice
+			"rcarriga/nvim-notify", -- Опциональная зависимость для уведомлений
+		},
+		config = function()
+			-- Настройка noice
+			require("configs.noice").setup()
+		end,
+	},
+
 	{
 		-- Красивая табуляция
 		"lukas-reineke/indent-blankline.nvim",
