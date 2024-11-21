@@ -26,19 +26,14 @@ local options = {
 		python = { "ruff", "yapf", "black" },
 	},
 	--
-	-- formatters = {
-	--     -- C & C++
-	--     ["clang-format"] = {
-	--         prepend_args = {
-	--             "-style={ \
-	--                     IndentWidth: 4, \
-	--                     TabWidth: 4, \
-	--                     UseTab: Never, \
-	--                     AccessModifierOffset: 0, \
-	--                     IndentAccessModifiers: true, \
-	--                     PackConstructorInitializers: Never}",
-	--         },
-	--     },
+	formatters = {
+		-- C & C++
+		["clang-format"] = {
+			prepend_args = {
+				'-style={"IndentWidth": 4, "TabWidth": 4, "UseTab": "Never", "AccessModifierOffset": 0, "IndentAccessModifiers": true, "PackConstructorInitializers": "Never"}',
+			},
+		},
+	},
 	--     -- -- Golang
 	--     -- ["goimports-reviser"] = {
 	--     --     prepend_args = { "-rm-unused" },

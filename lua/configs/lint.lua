@@ -5,6 +5,7 @@ M.setup = function()
 
 	lint.linters_by_ft = {
 		python = { "ruff", "mypy" },
+		cpp = { "cpplint", "cppcheck" },
 	}
 
 	local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -22,7 +23,7 @@ M.setup = function()
 
 	-- Настройка диагностики
 	vim.diagnostic.config {
-		virtual_text = false, -- Отключаем виртуальный текст
+		virtual_text = true, -- Отключаем виртуальный текст
 		signs = true, -- Оставляем знаки для ошибок
 		underline = true, -- Включаем подчеркивание
 		update_in_insert = true,

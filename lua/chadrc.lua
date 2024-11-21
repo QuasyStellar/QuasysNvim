@@ -99,6 +99,9 @@ local options = {
 	mason = {
 		pkgs = {
 			"basedpyright",
+			"clang-format",
+			"cpplint",
+			"clangd",
 			"yapf",
 			"black",
 			"mypy",
