@@ -56,7 +56,7 @@ lspconfig.clangd.setup {
 }
 
 -- EXAMPLE: Устанавливаем другие LSP серверы с дефолтной настройкой
-local servers = { "lua_ls", "html", "cssls" }
+local servers = { "lua_ls", "html", "cssls", "jdtls" }
 -- Настройка LSP с дефолтной конфигурацией для других серверов
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {

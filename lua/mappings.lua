@@ -20,11 +20,11 @@ vim.api.nvim_set_keymap("n", "<f5>", "", {
 		local ext = vim.fn.expand "%:e" -- Get file extension
 
 		if ext == "cpp" or ext == "c" then
-			vim.cmd "vsplit term://g++ % -o %< && %< | setlocal nonumber norelativenumber| startinsert"
+			vim.cmd "split term://g++ % -o %< && %< | setlocal nonumber norelativenumber| startinsert"
 		elseif ext == "py" then
-			vim.cmd "vsplit term://python3 % | setlocal nonumber norelativenumber| startinsert"
+			vim.cmd "split term://py % | setlocal nonumber norelativenumber| startinsert"
 		elseif ext == "java" then
-			vim.cmd "vsplit term://javac % && java %< | setlocal nonumber norelativenumber| startinsert"
+			vim.cmd "split term://javac % && java %< | setlocal nonumber norelativenumber| startinsert"
 		else
 			print "Unsupported file type"
 		end

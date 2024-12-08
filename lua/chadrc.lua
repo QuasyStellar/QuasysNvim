@@ -2,9 +2,9 @@
 local options = {
 	-- Настройки основной темы и интерфейса base46
 	base46 = {
-		theme = "chocolate", -- Устанавливает тему из переменной окружения или по умолчанию "tokyonight"
-		theme_toggle = { "chocolate", "catpuccin" }, -- Переключение между темами "onedark" и "one_light"
-		transparency = true, -- Отключает прозрачность
+		theme = "catppuccin",
+		theme_toggle = { "catppuccin", "catpuccin" }, -- Переключение между темами "onedark" и "one_light"
+		transparency = false, -- Отключает прозрачность
 		hl_add = {}, -- Дополнительные настройки подсветки
 		hl_override = {}, -- Переопределение стандартных настроек подсветки
 		integrations = {}, -- Интеграции с другими плагинами или модулями
@@ -99,6 +99,7 @@ local options = {
 	mason = {
 		pkgs = {
 			"basedpyright",
+			"google-java-format",
 			"clang-format",
 			"cpplint",
 			"clangd",

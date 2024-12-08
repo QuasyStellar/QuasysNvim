@@ -75,7 +75,12 @@ return {
 			},
 		},
 	},
-
+	{
+		"barrett-ruth/live-server.nvim",
+		build = "pnpm add -g live-server",
+		cmd = { "LiveServerStart", "LiveServerStop" },
+		config = true,
+	},
 	{
 		"nvim-java/nvim-java",
 		lazy = true,
@@ -91,10 +96,25 @@ return {
 			},
 		},
 		config = function()
-			require("java").setup {}
-			require("lspconfig").jdtls.setup {}
+			require("java").setup()
+			require("lspconfig").jdtls.setup {
+				settings = {
+					java = {
+						configuration = {
+							runtimes = {
+								{
+									name = "JavaSE-23",
+									path = "C:/Program Files/Java/jdk-23",
+									default = true,
+								},
+							},
+						},
+					},
+				},
+			}
 		end,
 	},
+
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufNewFile", "BufReadPre" },
@@ -106,22 +126,29 @@ return {
 	{ "nvim-neotest/nvim-nio" }, -- Зависимость?
 	-- Украшательства
 	-- lazy.nvim
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy", -- Плагин будет загружен только при необходимости
-		opts = {
-			-- Здесь можно добавить дополнительные настройки, если нужно
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim", -- Обязательная зависимость для noice
-			"rcarriga/nvim-notify", -- Опциональная зависимость для уведомлений
-		},
-		config = function()
-			-- Настройка noice
-			require("configs.noice").setup()
-		end,
-	},
-
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	event = "VeryLazy", -- Плагин будет загружен только при необходимости
+	-- 	opts = {
+	-- 		-- Здесь можно добавить дополнительные настройки, если нужно
+	-- 	},
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim", -- Обязательная зависимость для noice
+	-- 		"rcarriga/nvim-notify", -- Опциональная зависимость для уведомлений
+	-- 	},
+	-- 	config = function()
+	-- 		-- Настройка noice
+	-- 		require("configs.noice").setup()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	config = function()
+	-- 		require("notify").setup {
+	-- 			background_colour = "#000000",
+	-- 		}
+	-- 	end,
+	-- },
 	{
 		-- Красивая табуляция
 		"lukas-reineke/indent-blankline.nvim",

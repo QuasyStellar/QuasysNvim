@@ -24,6 +24,7 @@ local options = {
 		-- go = { "gofumpt", "goimports-reviser", "golines" },
 		-- haskell = { "fourmolu", "stylish-haskell" },
 		python = { "ruff", "yapf", "black" },
+		java = { "google-java-format" },
 	},
 	--
 	formatters = {
